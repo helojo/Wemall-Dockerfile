@@ -19,9 +19,9 @@ RUN cd /root && git clone https://github.com/shen100/wemall.git
 
 #修改配置
 RUN cd /root/wemall/ && mv configuration.dev.json configuration.json
-RUN sed -i 's/"Password"     : ""/"Password"     : "12wsxCDE#"/g' configuration.json
-RUN sed -i 's/"User"         : ""/"User"         : "root"/g' configuration.json
-RUN sed -i 's/"UploadImgDir"        : ""/"UploadImgDir"        : "/upload/img"/g' configuration.json
+RUN sed -i 's/"Password"     : ""/"Password"     : "12wsxCDE#"/g' /root/wemall/ configuration.json
+RUN sed -i 's/"User"         : ""/"User"         : "root"/g' /root/wemall/ configuration.json
+RUN sed -i 's/"UploadImgDir"        : ""/"UploadImgDir"        : "/upload/img"/g' /root/wemall/ configuration.json
 
 #初始化数据库
 RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql --rpm
@@ -49,14 +49,14 @@ RUN export PATH
 RUN export GOPATH
 
 #下载go库
-git clone https://github.com/jinzhu/gorm /root/wemall/src/github.com/jinzhu/gorm/
-git clone https://github.com/jinzhu/inflection  /root/wemall/src/github.com/jinzhu/inflection/
-git clone https://github.com/satori/go.uuid /root/wemall/src/github.com/satori/go.uuid/
-git clonehttps://github.com/go-sql-driver/mysql /root/wemall/src/github.com/go-sql-driver/mysql/
-git clone https://gopkg.in/kataras/iris.v6  /root/wemall/src/gopkg.in/kataras/iris.v6/
-git clone https://go.googlesource.com/crypto  /root/wemall/src/golang.org/x/crypto/
-mkdir /root/wemall/src/wemall
-cd /root/wemall && cp config controller model route utils /root/wemall/src/wemall/ -rpaf
+RUN git clone https://github.com/jinzhu/gorm /root/wemall/src/github.com/jinzhu/gorm/
+RUN git clone https://github.com/jinzhu/inflection  /root/wemall/src/github.com/jinzhu/inflection/
+RUN git clone https://github.com/satori/go.uuid /root/wemall/src/github.com/satori/go.uuid/
+RUN git clonehttps://github.com/go-sql-driver/mysql /root/wemall/src/github.com/go-sql-driver/mysql/
+RUN git clone https://gopkg.in/kataras/iris.v6  /root/wemall/src/gopkg.in/kataras/iris.v6/
+RUN git clone https://go.googlesource.com/crypto  /root/wemall/src/golang.org/x/crypto/
+RUN mkdir /root/wemall/src/wemall
+RUN cd /root/wemall && cp config controller model route utils /root/wemall/src/wemall/ -rpaf
 
 #脚本
 ADD conf/sshd.conf        /etc/supervisord.d/sshd.conf
