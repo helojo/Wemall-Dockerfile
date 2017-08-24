@@ -15,7 +15,7 @@ RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key     && \
     ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key
 
 #下载程序
-cg /root && git clone https://github.com/shen100/wemall.git
+cd /root && git clone https://github.com/shen100/wemall.git
 
 #修改配置
 cd /root/wemall/ && mv configuration.dev.json configuration.json
