@@ -26,7 +26,7 @@ RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql --rpm
 
 
 #导入数据
-RUN mysql -uroot -p'12wsxCDE#' --default-character-set=utf8 wemall </root/wemall/sql/wemall.sql
+#RUN mysql -uroot -p'12wsxCDE#' --default-character-set=utf8 wemall </root/wemall/sql/wemall.sql
 
 
 #安装go
