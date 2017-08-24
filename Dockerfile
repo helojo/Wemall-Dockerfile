@@ -17,12 +17,6 @@ RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key     && \
 #下载程序
 RUN cd /root && git clone https://github.com/shen100/wemall.git
 
-#修改配置
-RUN cd /root/wemall/ && mv configuration.dev.json configuration.json
-RUN sed -i 's/"Password"     : ""/"Password"     : "12wsxCDE#"/g' /root/wemall/ configuration.json
-RUN sed -i 's/"User"         : ""/"User"         : "root"/g' /root/wemall/ configuration.json
-RUN sed -i 's/"UploadImgDir"        : ""/"UploadImgDir"        : "/upload/img"/g' /root/wemall/ configuration.json
-
 #初始化数据库
 RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql --rpm
 RUN mysqld
@@ -67,6 +61,7 @@ ADD conf/mysqld.conf        /etc/supervisord.d/mysqld.conf
 ADD conf/main.conf        /etc/supervisord.d/main.conf
 ADD conf/dev.wemall.com.conf /etc/nginx/conf.d/dev.wemall.com.conf
 ADD conf/nginx.conf /etc/nginx/nginx.conf
+ADD conf/configuration.json  /root/wemall/configuration.json
 
 #情况缓存
 yum clean all
