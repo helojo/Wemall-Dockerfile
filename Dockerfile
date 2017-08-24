@@ -43,7 +43,7 @@ RUN source /root/.bash_profile
 RUN git clone https://github.com/jinzhu/gorm /root/wemall/src/github.com/jinzhu/gorm/
 RUN git clone https://github.com/jinzhu/inflection  /root/wemall/src/github.com/jinzhu/inflection/
 RUN git clone https://github.com/satori/go.uuid /root/wemall/src/github.com/satori/go.uuid/
-RUN git clonehttps://github.com/go-sql-driver/mysql /root/wemall/src/github.com/go-sql-driver/mysql/
+RUN git clone https://github.com/go-sql-driver/mysql /root/wemall/src/github.com/go-sql-driver/mysql/
 RUN git clone https://gopkg.in/kataras/iris.v6  /root/wemall/src/gopkg.in/kataras/iris.v6/
 RUN git clone https://go.googlesource.com/crypto  /root/wemall/src/golang.org/x/crypto/
 RUN mkdir /root/wemall/src/wemall
