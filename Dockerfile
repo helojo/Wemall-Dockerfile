@@ -34,13 +34,10 @@ RUN wget https://storage.googleapis.com/golang/go1.8.3.linux-amd64.tar.gz
 RUN tar xf go1.8.3.linux-amd64.tar.gz -C /usr/local/
 RUN rm go1.8.3.linux-amd64.tar.gz -rf
 
-配置环境变量
-ENV GOBIN=/usr/local/go/bin
-ENV GOPATH=/root/wemall
-ENV GOROOT=/usr/local/go
-ENV PATH=$PATH:$HOME/bin:$GOROOT/bin
-RUN export PATH
-RUN export GOPATH
+#gopath
+ADD conf/.bash_profile   /rot/.bash_profile
+ADD conf/.bash_profile   /etc/profile.d/go
+RUN source /root/.bash_profile
 
 #下载go库
 RUN git clone https://github.com/jinzhu/gorm /root/wemall/src/github.com/jinzhu/gorm/
@@ -62,6 +59,7 @@ ADD conf/main.conf        /etc/supervisord.d/main.conf
 ADD conf/dev.wemall.com.conf /etc/nginx/conf.d/dev.wemall.com.conf
 ADD conf/nginx.conf /etc/nginx/nginx.conf
 ADD conf/configuration.json  /root/wemall/configuration.json
+
 
 #情况缓存
 yum clean all
