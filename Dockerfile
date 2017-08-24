@@ -9,9 +9,6 @@ RUN yum -y install http://repo.mysql.com/yum/mysql-5.5-community/docker/x86_64/m
 
 #安装软件
 RUN yum -y install npm nginx node git wget openssh-server
-ADD conf/get-pip.py /root/get-pip.py
-RUN python /root/get-pip.py
-RUN pip install supervisor
 
 #配置key
 RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key     && \
@@ -64,6 +61,10 @@ ADD conf/nginx.conf /etc/nginx/nginx.conf
 ADD conf/configuration.json  /root/wemall/configuration.json
 ADD conf/supervisord.conf    /etc/supervisord.conf
 
+#supervisor 安装
+ADD conf/get-pip.py /root/get-pip.py
+RUN python /root/get-pip.py
+RUN pip install supervisor
 
 #情况缓存
 RUN yum clean all
