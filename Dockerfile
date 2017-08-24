@@ -8,7 +8,10 @@ RUN yum -y install https://kojipkgs.fedoraproject.org//packages/http-parser/2.7.
 RUN yum -y install http://repo.mysql.com/yum/mysql-5.5-community/docker/x86_64/mysql-community-server-minimal-5.5.55-2.el7.x86_64.rpm
 
 #安装软件
-RUN yum -y install npm nginx node git wget openssh-server supervisor
+RUN yum -y install npm nginx node git wget openssh-server
+ADD conf/get-pip.py /root/get-pip.py
+RUN python /root/get-pip.py
+RUN pip install supervisor
 
 #配置key
 RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key     && \
