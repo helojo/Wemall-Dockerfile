@@ -59,6 +59,7 @@ ADD conf/main.conf        /etc/supervisord.d/main.conf
 ADD conf/dev.wemall.com.conf /etc/nginx/conf.d/dev.wemall.com.conf
 ADD conf/nginx.conf /etc/nginx/nginx.conf
 ADD conf/configuration.json  /root/wemall/configuration.json
+ADD conf/supervisord.conf    /etc/supervisord.conf
 
 
 #情况缓存
