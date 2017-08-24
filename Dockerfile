@@ -44,9 +44,8 @@ RUN git clone https://github.com/jinzhu/gorm /root/wemall/src/github.com/jinzhu/
 RUN git clone https://github.com/jinzhu/inflection  /root/wemall/src/github.com/jinzhu/inflection
 RUN git clone https://github.com/satori/go.uuid /root/wemall/src/github.com/satori/go.uuid
 RUN git clone https://github.com/go-sql-driver/mysql /root/wemall/src/github.com/go-sql-driver/mysql
-RUN git clone https://gopkg.in/kataras/iris.v6  /root/wemall/src/gopkg.in/kataras/iris.v6
-RUN git clone https://gopkg.in/kataras/iris.v6  /root/wemall/src/gopkg.in/kataras/iris.v6
 RUN git clone https://go.googlesource.com/crypto  /root/wemall/src/golang.org/x/crypto
+RUN git clone https://gopkg.in/kataras/iris.v6  /root/wemall/src/gopkg.in/kataras/iris.v6
 RUN mkdir /root/wemall/src/wemall
 RUN cd /root/wemall && cp config controller model route utils /root/wemall/src/wemall/ -rpaf
 
