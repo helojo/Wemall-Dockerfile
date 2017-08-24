@@ -62,7 +62,7 @@ ADD conf/configuration.json  /root/wemall/configuration.json
 
 
 #情况缓存
-yum clean all
+RUN yum clean all
 
 EXPOSE 80,443
 CMD ["supervisord","-n","-c","/etc/supervisord.conf"]
