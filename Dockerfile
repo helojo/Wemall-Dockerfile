@@ -15,13 +15,13 @@ RUN ssh-keygen -t dsa -f /etc/ssh/ssh_host_dsa_key     && \
     ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key
 
 #下载程序
-cd /root && git clone https://github.com/shen100/wemall.git
+RUN cd /root && git clone https://github.com/shen100/wemall.git
 
 #修改配置
-cd /root/wemall/ && mv configuration.dev.json configuration.json
-sed -i 's/"Password"     : ""/"Password"     : "12wsxCDE#"/g' configuration.json
-sed -i 's/"User"         : ""/"User"         : "root"/g' configuration.json
-sed -i 's/"UploadImgDir"        : ""/"UploadImgDir"        : "/upload/img"/g' configuration.json
+RUN cd /root/wemall/ && mv configuration.dev.json configuration.json
+RUN sed -i 's/"Password"     : ""/"Password"     : "12wsxCDE#"/g' configuration.json
+RUN sed -i 's/"User"         : ""/"User"         : "root"/g' configuration.json
+RUN sed -i 's/"UploadImgDir"        : ""/"UploadImgDir"        : "/upload/img"/g' configuration.json
 
 #初始化数据库
 RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql --rpm
