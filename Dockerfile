@@ -19,7 +19,7 @@ RUN cd /root && git clone https://github.com/shen100/wemall.git
 
 #初始化数据库
 RUN mysql_install_db --user=mysql --datadir=/var/lib/mysql --rpm
-RUN mysqld
+RUN mysqld &
 RUN mysql -uroot -p -e "SET PASSWORD FOR 'root'@'127.0.0.1'=PASSWORD('12wsxCDE#');"
 RUN mysql -uroot -p -e "SET PASSWORD FOR 'root'@'localhost'=PASSWORD('12wsxCDE#');"
 RUN mysql -uroot -p -e "CREATE DATABASE wemall DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;"
