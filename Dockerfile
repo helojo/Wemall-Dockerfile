@@ -1,6 +1,9 @@
 FROM docker.io/centos
 MAINTAINER  teazj
 
+RUN rm /etc/yum.repos.d/* -rf
+ADD yum/* 	/etc/yum.repos.d/
+
 #安装npm依赖包
 RUN yum -y install https://kojipkgs.fedoraproject.org//packages/http-parser/2.7.1/3.el7/x86_64/http-parser-2.7.1-3.el7.x86_64.rpm   && \
 
@@ -52,10 +55,11 @@ RUN source /root/.bash_profile     && \
 
 #脚本
 ADD conf/*.conf        /etc/supervisord.d/
-ADD conf/dev.wemall.com.conf /etc/nginx/conf.d/dev.wemall.com.conf
-ADD conf/nginx.conf /etc/nginx/nginx.conf
+ADD nginx/dev.wemall.com.conf /etc/nginx/conf.d/dev.wemall.com.conf
+ADD nginx/nginx.conf /etc/nginx/nginx.conf
 ADD conf/configuration.json  /root/wemall/configuration.json
 ADD conf/supervisord.conf    /etc/supervisord.conf
+ADD npm/s.sh                 /root/wemall/s.sh
 
 #supervisor 安装
 ADD conf/get-pip.py /root/get-pip.py
