@@ -51,24 +51,20 @@ RUN source /root/.bash_profile     && \
 	cd /root/wemall && cp config controller model route utils /root/wemall/src/wemall/ -rpaf
 
 #脚本
-ADD conf/sshd.conf        /etc/supervisord.d/sshd.conf      && \
-	conf/nginx.conf        /etc/supervisord.d/nginx.conf       && \
-	conf/npm_start.conf        /etc/supervisord.d/npm_start.conf     && \
-	conf/staticServ.conf        /etc/supervisord.d/staticServ.conf     && \
-	conf/mysqld.conf        /etc/supervisord.d/mysqld.conf     && \
-	conf/main.conf        /etc/supervisord.d/main.conf     && \
-	conf/dev.wemall.com.conf /etc/nginx/conf.d/dev.wemall.com.conf     && \
-	conf/nginx.conf /etc/nginx/nginx.conf     && \
-	conf/configuration.json  /root/wemall/configuration.json     && \
-	conf/supervisord.conf    /etc/supervisord.conf     && \
+ADD conf/*.conf        /etc/supervisord.d/    && \
+
+ADD conf/dev.wemall.com.conf /etc/nginx/conf.d/dev.wemall.com.conf     && \
+ADD conf/nginx.conf /etc/nginx/nginx.conf     && \
+ADD conf/configuration.json  /root/wemall/configuration.json     && \
+ADD conf/supervisord.conf    /etc/supervisord.conf     && \
 
 #supervisor 安装
-	conf/get-pip.py /root/get-pip.py
+ADD conf/get-pip.py /root/get-pip.py
 RUN python /root/get-pip.py     && \
-	pip install supervisor
+	pip install supervisor     && \
 
 #情况缓存
-	yum clean all     && \
+	yum clean all
 
 EXPOSE 80
 EXPOSE 443
