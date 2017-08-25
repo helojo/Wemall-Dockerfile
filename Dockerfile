@@ -37,6 +37,7 @@ RUN yum -y install https://kojipkgs.fedoraproject.org//packages/http-parser/2.7.
 #gopath
 ADD conf/.bash_profile   /rot/.bash_profile
 ADD conf/.bash_profile   /etc/profile.d/go
+
 RUN source /root/.bash_profile     && \
 
 #下载go库
@@ -47,7 +48,7 @@ RUN source /root/.bash_profile     && \
 	git clone https://go.googlesource.com/crypto  /root/wemall/src/golang.org/x/crypto	   && \
 	git clone https://gopkg.in/kataras/iris.v6  /root/wemall/src/gopkg.in/kataras/iris.v6	   && \
 	mkdir /root/wemall/src/wemall	   && \
-	cd /root/wemall && cp config controller model route utils /root/wemall/src/wemall/ -rpaf	   && \
+	cd /root/wemall && cp config controller model route utils /root/wemall/src/wemall/ -rpaf
 
 #脚本
 ADD conf/sshd.conf        /etc/supervisord.d/sshd.conf      && \
